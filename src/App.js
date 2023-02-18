@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Home from "./Components/Home";
+import AboutUs from "./Components/AboutUs";
+import Navbar from "./Components/Navbar";
+import Mission from "./Components/Mission";
+import WrongPath from "./Components/WrongPath";
+import History from "./Components/History";
+import Company from "./Components/Company";
+import Team from "./Components/Team";
+import Members from "./Components/Members";
+import MemberDetail from "./Components/MemberDetail";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/AboutUs" element={<AboutUs />} />
+        <Route path="/mission" element={<Mission />} />
+        <Route path="/history" element={<History />}>
+          <Route path="company" element={<Company />} />
+          <Route path="team" element={<Team />} />
+        </Route>
+        <Route path="/members" element={<Members />} />
+        <Route path="/members/:memberId" element={<MemberDetail />} />
+        <Route path="*" element={<WrongPath />} />
+      </Routes>
     </div>
   );
 }
